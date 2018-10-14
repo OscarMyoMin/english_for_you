@@ -27,7 +27,7 @@
     <div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col">
       <div class="demo-crumbs mdl-color-text--grey-500">
         <ul class="demo-list-three mdl-list" id="word_list">
-          
+
         </ul>
 
       </div>
@@ -35,19 +35,31 @@
   </div>
 </main>
 
-<dialog id="dialog" class="mdl-dialog">
-  <h3 class="mdl-dialog__title">MDL Dialog</h3>
-  <div class="mdl-dialog__content">
-    <p>
-      This is an example of the Material Design Lite dialog component.
-      Please use responsibly.
-    </p>
-  </div>
-  <div class="mdl-dialog__actions">
-    <button type="button" class="mdl-button">Close</button>
-    <button type="button" class="mdl-button" disabled>Disabled action</button>
-  </div>
-</dialog>
+<dialog class="mdl-dialog">
+    <h4 class="mdl-dialog__title">Allow data collection?</h4>
+    <div class="mdl-dialog__content">
+      <p>
+        Allowing us to collect data will let us get you the information you want faster.
+      </p>
+    </div>
+    <div class="mdl-dialog__actions">
+      <button type="button" class="mdl-button">Agree</button>
+      <button type="button" class="mdl-button close">Disagree</button>
+    </div>
+  </dialog>
+  <script>
+    var dialog = document.querySelector('dialog');
+    var showDialogButton = document.querySelector('#show-dialog');
+    if (! dialog.showModal) {
+      dialogPolyfill.registerDialog(dialog);
+    }
+    showDialogButton.addEventListener('click', function() {
+      dialog.showModal();
+    });
+    dialog.querySelector('.close').addEventListener('click', function() {
+      dialog.close();
+    });
+  </script>
 
 <script type="text/javascript">
   $(document).ready(function(){
@@ -59,10 +71,11 @@
         data:{query:query},
         dataType:'json',
         success:function(data){
+
           $('#word_list').html(data.table_data);
           $('#total_records').text(data.total_data);
         }
-      });
+      }).responseJSON;
     }
     $(document).on('keyup', '#search', function(){
       $query = $(this).val();
