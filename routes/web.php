@@ -12,3 +12,4 @@
 */
 
 Route::get('/','PageController@index');
+Route::get('/search','PageController@word_search')->name('word.search');
