@@ -29,7 +29,6 @@
         <ul class="demo-list-three mdl-list" id="word_list">
 
         </ul>
-
       </div>
     </div>
   </div>
