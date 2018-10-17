@@ -13,3 +13,5 @@
 
 Route::get('/','PageController@index');
 Route::get('/search','PageController@word_search')->name('word.search');
+Route::get('/verb-form','PageController@verb_form');
+Route::get('/verb-form/search','PageController@ver_formSearch')->name('verb-form.search');

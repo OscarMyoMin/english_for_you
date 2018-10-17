@@ -1,5 +1,5 @@
 @extends('frontend.layout.base')
-@section('title','HOME')
+@section('title','VERB FORM')
 @section('page')
 <style>
 .demo-list-two {
@@ -26,8 +26,20 @@
     <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
     <div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col">
       <div class="demo-crumbs mdl-color-text--grey-500">
-        <ul class="demo-list-three mdl-list" id="word_list">
-        </ul>
+        <table class="mdl-data-table mdl-js-data-table" style="width:100%;">
+          <thead>
+            <tr>
+              <th>Present <small>V<sub>1</sub></small></th>
+              <th>Past <small>V<sub>2</sub></small></th>
+              <th>Paticipal <small>V<sub>3</sub></small></th>
+              <th>Present Paticipal <small>V<sub>4</sub></small></th>
+              <th>Meaning</th>
+            </tr>
+          </thead>
+          <tbody>
+            
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
@@ -35,15 +47,16 @@
 <script type="text/javascript">
   $(document).ready(function(){
     fetch_data();
+
     function fetch_data(query = ''){
       $.ajax({
-        url:"{{route('word.search')}}",
+        url:"{{route('verb-form.search')}}",
         method:'GET',
         data:{query:query},
         dataType:'json',
         success:function(data){
 
-          $('#word_list').html(data.table_data);
+          $('tbody').html(data.table_data);
           $('#total_records').text(data.total_data);
         }
       }).responseJSON;
